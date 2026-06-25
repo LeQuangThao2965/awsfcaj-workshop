@@ -5,55 +5,29 @@ weight: 1
 chapter: false
 pre: " <b> 1.4. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 4:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Lựa chọn và phân tích đề tài thực tập phù hợp với định hướng AWS cloud deployment.
+* Thiết kế kiến trúc ban đầu sử dụng EC2, S3 và IAM cho ứng dụng web.
+* Khởi tạo project bằng Node.js, Express và React.
+* Xây dựng cấu trúc frontend/backend ban đầu để phát triển tiếp.
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Xem xét các ý tưởng dự án như file storage, marketplace và nền tảng sản phẩm số. <br>- Phân tích tính khả thi, chi phí, dịch vụ AWS cần dùng và phạm vi hoàn thành. | 11/05/2026 | 11/05/2026 | |
+| 3 | - Chọn đề tài dự án và xác định mục đích hệ thống. <br>- Xác định các nhóm người dùng chính: buyer, seller và admin. <br>- Liệt kê các chức năng cốt lõi cần có trong prototype đầu tiên. | 12/05/2026 | 12/05/2026 | |
+| 4 | - Thiết kế kiến trúc cloud ban đầu với EC2, S3 và IAM. <br>- Xác định trách nhiệm của từng dịch vụ AWS trong hệ thống. <br>- Phác thảo luồng dữ liệu giữa frontend, backend, database và object storage. | 13/05/2026 | 13/05/2026 | |
+| 5 | - Khởi tạo backend bằng Node.js và Express. <br>- Tạo cấu trúc thư mục ban đầu cho routes, controllers, services, models và middleware. <br>- Chuẩn bị cấu hình môi trường cho việc tích hợp AWS và database sau này. | 14/05/2026 | 14/05/2026 | |
+| 6 | - Khởi tạo frontend React. <br>- Tạo cấu trúc thư mục ban đầu cho pages, components, services và assets. <br>- Kiểm tra kế hoạch kết nối cơ bản giữa frontend và backend. | 15/05/2026 | 15/05/2026 | |
 
 
 ### Kết quả đạt được tuần 4:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Chọn định hướng dự án: nền tảng marketplace trên cloud cho sản phẩm số và mô hình 3D.
+* Xác định các thành phần chính của hệ thống gồm frontend, backend, storage, database và thanh toán.
+* Thiết kế kiến trúc ban đầu với EC2 làm application server, S3 làm nơi lưu trữ file và IAM để phân quyền truy cập.
+* Khởi tạo cấu trúc backend Node.js + Express và frontend React.
+* Chuẩn bị nền tảng dự án cho các module user, product, upload và 3D preview.

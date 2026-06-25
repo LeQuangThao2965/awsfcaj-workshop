@@ -8,46 +8,27 @@ pre: " <b> 1.9. </b> "
 
 ### Week 9 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Complete and test the main features of the current project prototype.
+* Improve authentication, product search, user management, 3D model preview, and payment confirmation.
+* Review remaining issues before AWS deployment.
+* Plan the next stage for architecture drawing, AWS deployment, seller workflow, and preview improvement.
+
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | ---- | ---- | ---- | ---- | ----|
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Review the current project prototype and list completed features. <br>- Test registration, login, and authentication flow. <br>- Check basic user session behavior and access control. | 06/15/2026 | 06/15/2026 | |
+| 3 | - Test product search and product display functions. <br>- Verify product detail pages for digital documents and 3D model products. <br>- Check the 3D viewer behavior for GLB model files. | 06/16/2026 | 06/16/2026 | |
+| 4 | - Test admin user management features. <br>- Verify ban/unban user logic and its effect on user access. <br>- Review missing parts in role management and seller registration. | 06/17/2026 | 06/17/2026 | |
+| 5 | - Test the SePay payment integration flow. <br>- Call SePay API or process payment notification data to confirm successful transactions. <br>- Check whether successful transactions correctly update purchase status. | 06/18/2026 | 06/18/2026 | |
+| 6 | - Review remaining issues and update the project plan. <br>- List incomplete features including AWS deployment, architecture diagram, seller registration, category management, and document preview before purchase. <br>- Prepare the direction for the next development phase. | 06/19/2026 | 06/19/2026 | |
 
 
 ### Week 9 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Completed a working prototype with registration, login, product search, and basic marketplace functions.
+* Implemented admin-side user management including ban and unban user operations.
+* Supported digital products such as PDF/Word documents and 3D model files.
+* Displayed 3D model products directly on the web using a 3D viewer.
+* Integrated real-time payment confirmation through SePay API and transaction notification handling.
+* Identified pending tasks: official AWS architecture diagram, AWS deployment testing, seller registration, category management, and document preview before purchase.

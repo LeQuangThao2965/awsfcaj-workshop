@@ -8,46 +8,26 @@ pre: " <b> 1.6. </b> "
 
 ### Week 6 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Stabilize the project structure after the initial implementation stage.
+* Refactor frontend and backend folders to improve maintainability.
+* Continue improving the database schema and data structure.
+* Fix issues found in the early implementation and prepare for core feature development.
+
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | ---- | ---- | ---- | ---- | ----|
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Review the current source code structure and identify parts that are hard to maintain. <br>- Plan improvements for separating frontend components and backend modules. <br>- Define naming conventions for files, routes, and services. | 05/25/2026 | 05/25/2026 | |
+| 3 | - Refactor the backend structure. <br>- Separate route definitions, controller logic, service logic, and model access. <br>- Check whether API responses follow a consistent format. | 05/26/2026 | 05/26/2026 | |
+| 4 | - Refactor the frontend structure. <br>- Organize React pages, reusable components, API service files, and state-related logic. <br>- Remove duplicated UI or unused code where possible. | 05/27/2026 | 05/27/2026 | |
+| 5 | - Review and update the database/data model design. <br>- Add fields and constraints for users, products, product files, categories, purchases, and transactions. <br>- Check relationships between entities before continuing development. | 05/28/2026 | 05/28/2026 | |
+| 6 | - Test existing functions after refactoring. <br>- Fix errors caused by structure changes. <br>- Prepare the project for implementing product management, S3 upload, and payment features. | 05/29/2026 | 05/29/2026 | |
 
 
 ### Week 6 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Improved the frontend/backend project structure and separated responsibilities more clearly.
+* Reorganized routes, controllers, services, components, and shared utilities.
+* Updated the data structure for users, products, digital files, product categories, and transactions.
+* Added more constraints and fields to support future marketplace features.
+* Performed basic testing and fixed issues in the existing modules before adding larger features.

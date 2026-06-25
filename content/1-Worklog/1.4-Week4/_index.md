@@ -6,49 +6,28 @@ chapter: false
 pre: " <b> 1.4. </b> "
 ---
 
-
 ### Week 4 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Select and analyze a suitable internship mini project related to AWS cloud deployment.
+* Design the initial architecture using EC2, S3, and IAM for a web application.
+* Initialize the project using Node.js, Express, and React.
+* Build the first frontend/backend folder structure for future development.
+
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | ---- | ---- | ---- | ---- | ----|
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Review several possible project ideas such as file storage, marketplace, and digital product platform. <br>- Analyze feasibility, cost, required AWS services, and completion scope. | 05/11/2026 | 05/11/2026 | |
+| 3 | - Select the project topic and define the system purpose. <br>- Identify the main users of the system: buyer, seller, and admin. <br>- List the required core functions for the first prototype. | 05/12/2026 | 05/12/2026 | |
+| 4 | - Design the initial cloud architecture using EC2, S3, and IAM. <br>- Define the responsibility of each AWS service in the system. <br>- Draft the main data flow between frontend, backend, database, and object storage. | 05/13/2026 | 05/13/2026 | |
+| 5 | - Initialize the backend project using Node.js and Express. <br>- Create the initial folder structure for routes, controllers, services, models, and middleware. <br>- Prepare environment configuration for future AWS and database integration. | 05/14/2026 | 05/14/2026 | |
+| 6 | - Initialize the React frontend project. <br>- Create the first folder structure for pages, components, services, and assets. <br>- Test the basic connection plan between frontend and backend. | 05/15/2026 | 05/15/2026 | |
 
 
 ### Week 4 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Chose the project direction: a cloud-based marketplace platform for digital products and 3D models.
+* Defined the main system components including frontend, backend, storage, database, and payment integration.
+* Designed the initial AWS-oriented architecture using EC2 as the application server, S3 as file storage, and IAM for access control.
+* Initialized the Node.js + Express backend structure and React frontend structure.
+* Prepared the project foundation for implementing user, product, upload, and 3D preview modules.

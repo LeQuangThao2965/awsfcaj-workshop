@@ -6,51 +6,29 @@ chapter: false
 pre: " <b> 1.2. </b> "
 ---
 
-
 ### Mục tiêu tuần 2:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nắm nội dung và yêu cầu thực hành của Module 01.
+* Tìm hiểu bài toán tối ưu hóa chi phí trên AWS và cách theo dõi chi phí bằng AWS Budgets.
+* Hiểu cơ chế tính phí cơ bản của các dịch vụ AWS như EC2 và S3.
+* Thực hành phân quyền cơ bản bằng IAM và tìm hiểu quy trình triển khai ứng dụng trên cloud.
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Ôn tập nội dung Module 01 và xác định các phần cần thực hành. <br>- Ghi chú các nhóm dịch vụ AWS và khái niệm cloud cơ bản. <br>- Liên hệ nội dung module với mục tiêu thực tập và định hướng dự án sau này. | 27/04/2026 | 27/04/2026 | |
+| 3 | - Tìm hiểu bài toán tối ưu hóa chi phí trên AWS. <br>- Phân biệt chi phí hạ tầng cố định và chi phí cloud theo mô hình pay-as-you-go. <br>- Phân tích các yếu tố làm phát sinh chi phí như thời gian chạy EC2, dung lượng lưu trữ và truyền dữ liệu. | 28/04/2026 | 28/04/2026 | |
+| 4 | - Tìm hiểu cách tạo và cấu hình AWS Budgets. <br>- Xem xét ngưỡng cảnh báo, thông báo email và cách theo dõi chi phí. <br>- Thực hành tạo budget đơn giản để giám sát chi phí trong quá trình thực tập. | 29/04/2026 | 29/04/2026 | |
+| 5 | - Tìm hiểu cơ chế tính phí của Amazon EC2 và Amazon S3. <br>- So sánh các yếu tố tính phí của EC2 như loại instance, region, thời gian chạy và storage. <br>- So sánh các yếu tố tính phí của S3 như storage class, dung lượng object, request và data transfer. | 30/04/2026 | 30/04/2026 | |
+| 6 | - Tìm hiểu phân quyền cơ bản bằng IAM cho quá trình deploy. <br>- Ôn lại IAM User, IAM Role, Policy và permission boundary. <br>- Tổng hợp quy trình triển khai cơ bản của một ứng dụng web trên AWS. | 01/05/2026 | 01/05/2026 | |
 
 
 ### Kết quả đạt được tuần 2:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Hoàn thành quá trình học ban đầu với Module 01 và ghi chú các khái niệm AWS quan trọng.
+* Hiểu lý do cần kiểm soát chi phí cloud ngay từ giai đoạn đầu của dự án.
+* Tìm hiểu và cấu hình cơ bản AWS Budgets để theo dõi chi phí và cảnh báo.
+* Nắm được các yếu tố ảnh hưởng đến chi phí EC2 và S3 như thời gian chạy, loại instance, dung lượng lưu trữ và băng thông.
+* Thực hành các khái niệm IAM cơ bản gồm User, Group, Role, Policy và nguyên tắc phân quyền tối thiểu.
+* Có cái nhìn tổng quan về cách triển khai và quản lý ứng dụng trên AWS.

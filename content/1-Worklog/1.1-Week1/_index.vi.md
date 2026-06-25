@@ -18,7 +18,7 @@ pre: " <b> 1.1. </b> "
 
 ### Các công việc cần triển khai trong tuần này:
 | Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
-| - | - | - | - | - |
+| --- | --- | --- | --- | --- |
 | 2 | Thứ 2	- Làm quen với các thành viên FCJ và anh/chị hướng dẫn thực tập. <br>- Đọc và ghi chú quy định của đơn vị thực tập, cách làm việc và yêu cầu báo cáo.<br>- Xem tổng quan lộ trình thực tập và mục tiêu học tập theo tuần.	| 20/04/2026 | 20/04/2026 | <https://www.notion.so/Group-description-TP-HCM-347df829a730809a8f63d39505644917>
 | 3 | - Tìm hiểu AWS và các nhóm dịch vụ chính. <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + Security, Identity, and Management <br>- Ghi chú các dịch vụ nhập môn như EC2, S3 và IAM. <br>- Tìm hiểu mục đích của workshop AWS và làm theo hướng dẫn thực hiện workshop. | 21/04/2026 | 21/04/2026 | <https://cloudjourney.awsstudygroup.com/> |
 | 4 | - Tạo/cấu hình tài khoản AWS Free Tier. <br>- Tìm hiểu cách sử dụng AWS Management Console và AWS CLI. <br>- Thực hành: <br>&emsp; + Tạo tài khoản AWS <br>&emsp; Cài đặt AWS CLI <br>&emsp; + Cấu hình credentials và default region <br>&emsp;+ Chạy các lệnh AWS CLI cơ bản <br>- Bắt đầu hoàn thành các nhiệm vụ nhận credits trên AWS Console Home. | 22/04/2026 | 22/04/2026 | <https://cloudjourney.awsstudygroup.com/> |

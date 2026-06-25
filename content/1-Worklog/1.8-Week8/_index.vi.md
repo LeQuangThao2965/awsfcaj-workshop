@@ -5,55 +5,29 @@ weight: 1
 chapter: false
 pre: " <b> 1.8. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 8:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Điều chỉnh và tối ưu cấu trúc dữ liệu để hỗ trợ chức năng thanh toán và giao dịch.
+* Bổ sung các ràng buộc và thuộc tính cần thiết cho mô hình marketplace.
+* Tích hợp SePay để thử nghiệm quy trình thanh toán trực tuyến.
+* Chuẩn bị logic xác nhận giao dịch theo thời gian thực.
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Rà soát cấu trúc database hiện tại trước khi thêm chức năng thanh toán. <br>- Bổ sung hoặc điều chỉnh các field như mã đơn hàng, số tiền giao dịch, trạng thái, buyer, seller và sản phẩm đã mua. <br>- Định nghĩa ràng buộc để hạn chế dữ liệu thanh toán không hợp lệ. | 08/06/2026 | 08/06/2026 | |
+| 3 | - Cập nhật model backend và service logic để hỗ trợ purchase và transaction records. <br>- Chuẩn bị API cho tạo đơn hàng và kiểm tra trạng thái thanh toán. <br>- Kiểm thử cấu trúc dữ liệu mới bằng dữ liệu thanh toán mẫu. | 09/06/2026 | 09/06/2026 | |
+| 4 | - Nghiên cứu SePay API và quy trình webhook/thông báo thanh toán. <br>- Chuẩn bị phương án tích hợp để thử nghiệm thanh toán. <br>- Cấu hình endpoint backend cần thiết để nhận hoặc xử lý thông tin giao dịch. | 10/06/2026 | 10/06/2026 | |
+| 5 | - Tích hợp SePay vào dự án để thử nghiệm thanh toán. <br>- Xây dựng logic đối chiếu thông tin thanh toán với đơn hàng trong hệ thống. <br>- Kiểm thử luồng xác nhận giao dịch bằng dữ liệu mẫu. | 11/06/2026 | 11/06/2026 | |
+| 6 | - Rà soát quy trình thanh toán và sửa các lỗi cơ bản. <br>- Ghi nhận các giới hạn còn lại như seller registration chưa hoàn chỉnh, category management còn thiếu và preview tài liệu chưa ổn định. <br>- Chuẩn bị hệ thống cho giai đoạn kiểm thử chức năng cốt lõi ở tuần tiếp theo. | 12/06/2026 | 12/06/2026 | |
 
 
 ### Kết quả đạt được tuần 8:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Cập nhật cấu trúc dữ liệu với các trường và ràng buộc cho products, orders, transactions và user roles.
+* Chuẩn bị workflow thanh toán gồm tạo đơn hàng, trạng thái giao dịch và xác nhận mua hàng.
+* Tích hợp SePay API để thử nghiệm thanh toán và truy vấn giao dịch.
+* Xây dựng logic ban đầu để xử lý thông báo giao dịch và cập nhật trạng thái thanh toán.
+* Xác định các vấn đề còn lại liên quan đến đăng ký seller, quản lý danh mục và xem trước tài liệu.

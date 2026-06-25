@@ -5,76 +5,134 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+# Cloud-based Digital Product Marketplace with 3D Preview
+## Giải pháp Marketplace cho sản phẩm số tích hợp xem trước 3D, thanh toán thời gian thực và lưu trữ trên AWS  
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+### 1. Tóm tắt điều hành
+*Về dự án* <br>
+Dự án “Cloud-based Digital Product Marketplace with 3D Preview on AWS” là một nền tảng marketplace dành cho sản phẩm số như tài liệu PDF/Word, mô hình 3D, asset thiết kế và các tài nguyên kỹ thuật số khác. 
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+
+Hệ thống cho phép người dùng đăng ký tài khoản, đăng nhập, tìm kiếm sản phẩm, xem thông tin chi tiết, thanh toán trực tuyến và truy cập sản phẩm sau khi giao dịch được xác nhận thành công. 
+Điểm nổi bật của dự án là khả năng hiển thị mô hình 3D trực tiếp trên giao diện web đối với các sản phẩm dạng 3D Model. Người dùng có thể xoay, phóng to, thu nhỏ và quan sát sản phẩm trước khi mua, giúp tăng tính trực quan so với các website bán tài liệu số thông thường.
+
+
+Về mặt kỹ thuật, hệ thống sử dụng React ở phía Frontend, Node.js kết hợp Express ở phía Backend và database để lưu thông tin người dùng, sản phẩm, đơn hàng, giao dịch và quyền truy cập. Hạ tầng triển khai dự kiến sử dụng Amazon EC2 để chạy ứng dụng Backend, Amazon S3 để lưu trữ file sản phẩm, AWS IAM để kiểm soát quyền truy cập tài nguyên AWS và SePay để thử nghiệm quy trình thanh toán thời gian thực.
+
+*Mục tiêu*
+<br>
+Mục tiêu của dự án là áp dụng các kiến thức AWS đã học trong workshop vào một bài toán thực tế, bao gồm triển khai ứng dụng web lên cloud, quản lý file bằng object storage, thiết kế phân quyền truy cập tài nguyên, tối ưu chi phí vận hành và xây dựng hệ thống có khả năng mở rộng trong tương lai.
+  
 
 ### 2. Tuyên bố vấn đề  
 *Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+Nhiều nền tảng chia sẻ hoặc mua bán sản phẩm số chỉ tập trung vào việc đăng tải file và xử lý giao dịch cơ bản. Đối với các sản phẩm có tính trực quan cao như mô hình 3D, asset game hoặc tài nguyên thiết kế, người mua thường khó đánh giá chất lượng nếu chỉ xem ảnh minh họa hoặc mô tả bằng chữ.
+
+Nếu toàn bộ file sản phẩm được lưu trực tiếp trên server ứng dụng, hệ thống sẽ gặp nhiều hạn chế như khó mở rộng dung lượng, phụ thuộc vào ổ cứng máy chủ, khó quản lý file khi số lượng sản phẩm tăng và tiềm ẩn rủi ro mất dữ liệu khi server gặp sự cố.
+
+Bên cạnh đó, quy trình xác nhận thanh toán thủ công gây bất tiện cho cả người mua và người bán. Nếu quản trị viên phải kiểm tra chuyển khoản bằng tay, thời gian xác nhận đơn hàng sẽ chậm, dễ sai sót và không phù hợp với mô hình marketplace tự động.
 
 *Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Dự án đề xuất xây dựng một marketplace cho sản phẩm số, trong đó ứng dụng web chịu trách nhiệm quản lý người dùng, sản phẩm, giao dịch và quyền truy cập sau khi mua. Các file sản phẩm được lưu trữ tách biệt trên Amazon S3 thay vì lưu trực tiếp trên server. Backend Node.js + Express đóng vai trò trung gian xử lý nghiệp vụ, xác thực người dùng, quản lý sản phẩm, kiểm tra giao dịch và giao tiếp với các dịch vụ AWS.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+Đối với sản phẩm dạng 3D Model, Frontend React tích hợp chức năng 3D Viewer để hiển thị mô hình trực tiếp trên web. Đối với tài liệu PDF/Word, hệ thống sẽ tiếp tục hoàn thiện chức năng xem trước nội dung trước khi mua, chẳng hạn giới hạn số trang preview hoặc hiển thị bản xem thử.
+
+Luồng thanh toán được tích hợp với SePay nhằm tự động nhận thông báo giao dịch theo thời gian thực. Khi người dùng chuyển khoản thành công, Backend xử lý dữ liệu webhook/API từ SePay, đối chiếu mã đơn hàng, cập nhật trạng thái giao dịch và mở quyền truy cập sản phẩm cho người mua.
+
+**Lợi ích và giá trị mang lại:** 
+<br>&emsp;- Mô phỏng một hệ thống marketplace thực tế với các luồng người mua, người bán và quản trị viên. 
+<br>&emsp;- Tách biệt compute và storage bằng cách triển khai ứng dụng trên EC2 và lưu file trên S3.
+<br>&emsp;- Tăng trải nghiệm người dùng nhờ khả năng xem trước mô hình 3D trên web.
+<br>&emsp;- Tự động hóa xác nhận thanh toán thông qua SePay, giảm thao tác kiểm tra thủ công.
+<br>&emsp;- Áp dụng IAM và nguyên tắc least privilege để kiểm soát quyền truy cập tài nguyên AWS.
+
 
 ### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+Hệ thống được thiết kế theo mô hình web application triển khai trên AWS, bao gồm các thành phần chính: Client, Frontend, Backend, Database, Amazon S3, SePay và IAM. Người dùng truy cập giao diện React; Frontend gửi request đến Backend Node.js + Express thông qua REST API; Backend xử lý nghiệp vụ, kết nối database, giao tiếp với S3 và xử lý thanh toán thông qua SePay.
+```
+Luồng tạm thời do chưa vẽ
+User Browser
+    -> React Frontend
+        -> Node.js + Express Backend on Amazon EC2
+            -> Database
+            -> Amazon S3 (PDF, Word, images, 3D models)
+            -> SePay API / Webhook
+            -> AWS IAM Role / Policy
+```
+{{% notice note %}}
+**Note:** Sơ đồ kiến trúc chính thức sẽ được bổ sung trong báo cáo cuối sau khi hoàn tất cấu hình triển khai thử nghiệm trên AWS.
+{{% /notice %}}
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+![IoT Weather Station Architecture](../../images/2-Proposal/edge_architecture.jpeg)
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+![IoT Weather Platform Architecture](../../images/2-Proposal/platform_architecture.jpeg)
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+***Dịch vụ AWS sử dụng***
+- **React**: Xây dựng giao diện người dùng, trang sản phẩm, trang chi tiết, trang quản trị và khu vực xem trước 3D
+- **Node.js + Express**: Xây dựng Backend API, xử lý nghiệp vụ marketplace, xác thực, quản lý sản phẩm, giao dịch và tích hợp dịch vụ ngoài.
+- **Database**: Lưu dữ liệu người dùng, sản phẩm, danh mục, đơn hàng, giao dịch và quyền truy cập sản phẩm.
+- **Amazon EC2**: Môi trường triển khai Backend, chạy Node.js + Express và xử lý request từ Frontend.
+- **Amazon S3**: Lưu trữ file sản phẩm số như PDF, Word, ảnh, thumbnail và mô hình 3D.
+- **AWS IAM**: Quản lý quyền truy cập S3 và giới hạn quyền theo nguyên tắc least privilege.
+- **AWS Budget**: Theo dõi và cảnh báo chi phí trong quá trình thử nghiệm.
+- **SePay**: Tích hợp thanh toán và xử lý thông báo giao dịch theo thời gian thực.
+- **GitHub / GitHub Actions**: Quản lý mã nguồn và có thể mở rộng sang CI/CD trong giai đoạn sau.
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+
+***Thiết kế thành phần***  
+- **Frontend React**: hiển thị giao diện người dùng, danh sách sản phẩm, chi tiết sản phẩm, quản trị user và viewer 3D.
+- **Backend Node.js + Express**: xử lý REST API, validate dữ liệu, kiểm tra quyền truy cập, thao tác database, gọi SePay và S3.
+- **Database**: lưu các bảng users, products, categories, orders, transactions, product_files và user_purchases.
+- **Amazon S3**: lưu các object theo cấu trúc logic như products/{productId}/thumbnail.jpg, products/{productId}/document.pdf và products/{productId}/model.glb.
+- **A**dmin**: quản lý người dùng, ban/unban tài khoản, kiểm tra sản phẩm và theo dõi trạng thái hệ thống.
+- **Seller**: đăng sản phẩm, cập nhật sản phẩm và tải file sản phẩm lên hệ thống.
+- *Buyer*: tìm kiếm, xem trước, thanh toán và truy cập sản phẩm sau khi mua.
+
 
 ### 4. Triển khai kỹ thuật  
 *Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+Giai đoạn   |   Nội dung thực hiện
+|---|---|
+|Giai đoạn 1: Nghiên cứu và lựa chọn đề tài | Tìm hiểu EC2, S3, IAM, AWS Budget và quy trình deploy ứng dụng web; lựa chọn đề tài marketplace sản phẩm số tích hợp 3D Preview.|
+|Giai đoạn 2: Thiết kế kiến trúc và khởi tạo dự án | Khởi tạo React + Node.js + Express; xây dựng cấu trúc frontend/backend; xác định các module Authentication, Product Management, User Management, Payment và File Storage.|
+|Giai đoạn 3: Phát triển chức năng cốt lõi | Phát triển đăng ký, đăng nhập, tìm kiếm sản phẩm, hiển thị sản phẩm, quản lý user, ban/unban và hiển thị 3D model.|
+|Giai đoạn 4: Tích hợp thanh toán và lưu trữ file | Tích hợp SePay cho thanh toán thời gian thực; chuẩn bị luồng upload và quản lý file sản phẩm trên Amazon S3.|
+|Giai đoạn 5: Triển khai AWS và kiểm thử | Deploy Backend lên EC2, cấu hình S3 bucket, IAM Policy/Role, kiểm thử các luồng chính và hoàn thiện báo cáo.|
+
 
 *Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+- Backend hỗ trợ REST API, xác thực bằng session/JWT, validate dữ liệu, xử lý upload file, kết nối database và giao tiếp với SePay/S3.
+- Frontend hỗ trợ giao diện responsive, danh sách sản phẩm, form đăng nhập/đăng ký, trang chi tiết sản phẩm, trang quản trị và 3D Viewer.
+- AWS cần có EC2 instance cho môi trường thử nghiệm, Security Group mở các port cần thiết, S3 bucket lưu file sản phẩm, IAM policy giới hạn quyền truy cập và AWS Budget để theo dõi chi phí.
+- Hệ thống cần kiểm tra quyền truy cập sau khi mua để đảm bảo người dùng chỉ tải/xem đầy đủ sản phẩm đã thanh toán thành công.
+
+*Trạng thái nguyên mẫu hiện tại*
+- Đã có chức năng đăng ký, đăng nhập và tìm kiếm sản phẩm.
+- Đã có giao diện hiển thị 3D View Model đối với sản phẩm dạng 3D Model.
+- Đã có chức năng quản lý user cơ bản, bao gồm ban/unban user.
+- nĐã tích hợp thanh toán thời gian thực thông qua SePay và xử lý thông báo chuyển tiền để xác nhận giao dịch thành công.
+- Chưa hoàn thiện deploy AWS, sơ đồ kiến trúc chính thức, đăng ký seller, quản lý danh mục và chức năng preview tài liệu trước khi mua.
+
+
 
 ### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+Mốc thời gian | Mục tiêu chính
+|---|---|
+|Tháng 1 | Học nền tảng AWS, thực hành EC2/S3/IAM/AWS Budget, thử nghiệm deploy ứng dụng mẫu và xác định đề tài.|
+|Tháng 2 | Thiết kế kiến trúc EC2 + S3 + IAM, khởi tạo project React + Node.js + Express, xây dựng database và phát triển MVP.|
+|Tháng 3 | Tích hợp thanh toán SePay, hoàn thiện luồng buyer/seller/admin, deploy thử nghiệm lên EC2, tích hợp S3 và hoàn thiện báo cáo.|
+
+- *Sau triển khai*: Tiếp tục nghiên cứu và phát triển sản phẩm thêm 1 năm.  
 
 ### 6. Ước tính ngân sách  
+
+Dự án được thiết kế theo hướng tiết kiệm chi phí trong môi trường học tập và thử nghiệm. Các dịch vụ chính gồm Amazon EC2, Amazon S3, AWS IAM và AWS Budget. Chi phí thực tế sẽ được cập nhật bằng AWS Pricing Calculator sau khi chốt Region, instance type, dung lượng S3 và thời gian chạy EC2.
+```
 Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
 Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
-
+```
+```
 *Chi phí hạ tầng*  
 - AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
 - S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
@@ -87,22 +145,25 @@ Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.p
 
 *Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
 - *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+```
 
 ### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+Rủi ro|	Ảnh hưởng|	Xác suất|	Chiến lược giảm thiểu
+|---|---|---|---|
+|Chưa triển khai thành công lên AWS	|Cao	|Trung bình	|Ưu tiên deploy Backend lên EC2 trước, sau đó mới tích hợp S3 và các phần phụ.|
+|Tích hợp S3 gặp lỗi quyền truy cập	|Trung bình	|Trung bình	|Thiết kế IAM policy rõ ràng và kiểm thử từng quyền PutObject, GetObject, DeleteObject.|
+|Preview PDF/Word chưa hoàn thiện	|Trung bình	|Cao	|Ưu tiên preview PDF trước; với Word có thể dùng bản PDF preview hoặc thumbnail thay thế.|
+|Sai lệch trạng thái giao dịch thanh toán	|Cao	|Trung bình	|Kiểm tra mã đơn hàng, số tiền, trạng thái giao dịch và xử lý chống trùng webhook.|
+|Vượt chi phí AWS khi thử nghiệm	|Trung bình	|Thấp	|Bật AWS Budget, giới hạn dung lượng S3 và tắt EC2 khi không sử dụng.|
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
-
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
 
 ### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+- Xây dựng được marketplace sản phẩm số với các chức năng cơ bản như đăng ký, đăng nhập, tìm kiếm, xem chi tiết sản phẩm, quản lý user và quản lý sản phẩm.
+- Hỗ trợ hiển thị mô hình 3D trực tiếp trên web đối với sản phẩm dạng 3D Model.
+- Tích hợp quy trình thanh toán thời gian thực thông qua SePay và tự động cập nhật trạng thái giao dịch.
+- Triển khai thử nghiệm Backend lên Amazon EC2 và sử dụng Amazon S3 để lưu trữ file sản phẩm số.
+- Áp dụng AWS IAM để kiểm soát quyền truy cập tài nguyên cloud theo nguyên tắc bảo mật cơ bản.
+- Hình thành kiến trúc hệ thống rõ ràng, phù hợp để trình bày trong báo cáo workshop và có khả năng mở rộng trong tương lai.
+Về giá trị học tập, dự án giúp sinh viên hiểu rõ hơn quy trình triển khai một ứng dụng web thực tế lên AWS, cách tách biệt compute và storage, cách thiết kế API backend, cách xử lý thanh toán online và cách kiểm soát quyền truy cập tài nguyên theo nguyên tắc bảo mật cơ bản.
+
+Về khả năng mở rộng, hệ thống có thể phát triển thêm các chức năng như đăng ký seller, duyệt sản phẩm trước khi đăng bán, quản lý danh mục nâng cao, đánh giá sản phẩm, ví người bán, chia doanh thu, preview tài liệu trước khi mua và CI/CD tự động bằng GitHub Actions.

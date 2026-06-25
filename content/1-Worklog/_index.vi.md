@@ -10,10 +10,10 @@ pre: " <b> 1. </b> "
 **Note:** Worklog có thể thiếu một số thông tin vì thỉnh thoảng mình quên ghi chú lại, xin lỗi vì sự bất tiện này.
 {{% /notice %}}
 
-**Trong trang này** bạn sẽ cần giới thiệu worklog của bạn **như thế nào**? Bạn hoàn thành chương trình trong vòng **bao nhiêu tuần**? Bạn **đã làm gì** trong các tuần đó?
+**Trong trang này** mình sẽ giới thiệu worklog của mình. Như là: mình đã hoàn thành chương trình trong vòng bao nhiêu tuần hay là mình đã làm gì trong các tuần đó!
 
 
-Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt thời gian thực tập) với nội dung các tuần như sau:
+Thông thường và cũng là tiêu chuẩn, một worklog được thực hiện trong khoảng 3 tháng (trong suốt khoảng thời gian thực tập) với nội dung các tuần mà mình đã thực hiện như sau:
 
 **Tuần 1:** [Làm quen với AWS và các dịch vụ cơ bản trong AWS](1.1-week1/)
 

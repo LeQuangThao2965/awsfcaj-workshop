@@ -8,46 +8,26 @@ pre: " <b> 1.5. </b> "
 
 ### Week 5 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Build the initial frontend interface for the main user flows.
+* Research and practice storing product-related files on Amazon S3.
+* Refine the designed system architecture based on project requirements.
+* Prepare the frontend/backend integration workflow.
+
 
 ### Tasks to be carried out this week:
 | Day | Task | Start Date | Completion Date | Reference Material |
 | ---- | ---- | ---- | ---- | ----|
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| 2 | - Design the basic frontend layout and navigation flow. <br>- Create initial React pages for home, login/register, product list, and product detail. <br>- Define reusable UI components for product cards and forms. | 05/18/2026 | 05/18/2026 | |
+| 3 | - Build the backend API skeleton for product management. <br>- Prepare Express routes and controllers for listing and retrieving product information. <br>- Test API responses with sample data. | 05/19/2026 | 05/19/2026 | |
+| 4 | - Research Amazon S3 upload and storage workflow for product assets. <br>- Define the expected file types: images, PDF, Word documents, and GLB 3D models. <br>- Draft the S3 object key structure for product files. | 05/20/2026 | 05/20/2026 | |
+| 5 | - Connect the frontend forms with backend API endpoints. <br>- Test the data exchange between React and Express using basic product data. <br>- Identify validation fields needed for product submission. | 05/21/2026 | 05/21/2026 | |
+| 6 | - Review the current architecture and adjust module responsibilities. <br>- Organize pending tasks for authentication, upload, seller workflow, and payment. <br>- Document technical issues found during early development. | 05/22/2026 | 05/22/2026 | |
 
 
 ### Week 5 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Created the first React screens for authentication, product listing, product detail, and basic navigation.
+* Implemented the initial backend API structure for product and user-related operations.
+* Researched the file upload process for digital products such as PDF, Word files, images, and 3D models.
+* Practiced the Amazon S3 storage flow and identified how product files should be organized.
+* Reviewed and adjusted the system architecture to better support a digital marketplace use case.

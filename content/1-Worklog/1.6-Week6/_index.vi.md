@@ -5,54 +5,29 @@ weight: 1
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 6:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Ổn định cấu trúc dự án sau giai đoạn triển khai ban đầu.
+* Refactor cấu trúc frontend và backend để dễ bảo trì hơn.
+* Tiếp tục hoàn thiện database schema và data structure.
+* Sửa lỗi phát sinh và chuẩn bị cho giai đoạn phát triển tính năng cốt lõi.
+
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --- | --- | --- | --- |
+| 2 | - Rà soát cấu trúc source code hiện tại và xác định các phần khó bảo trì. <br>- Lập kế hoạch cải thiện cách phân tách component frontend và module backend. <br>- Định nghĩa quy ước đặt tên cho file, route và service. | 25/05/2026 | 25/05/2026 | |
+| 3 | - Refactor cấu trúc backend. <br>- Tách rõ route definition, controller logic, service logic và model access. <br>- Kiểm tra format response API để đồng nhất. | 26/05/2026 | 26/05/2026 | |
+| 4 | - Refactor cấu trúc frontend. <br>- Sắp xếp React pages, reusable components, API service files và logic trạng thái. <br>- Loại bỏ code trùng lặp hoặc không còn sử dụng nếu có. | 27/05/2026 | 27/05/2026 | |
+| 5 | - Rà soát và cập nhật thiết kế database/data model. <br>- Bổ sung field và ràng buộc cho users, products, product files, categories, purchases và transactions. <br>- Kiểm tra quan hệ giữa các entity trước khi tiếp tục phát triển. | 28/05/2026 | 28/05/2026 | |
+| 6 | - Kiểm thử các chức năng hiện có sau khi refactor. <br>- Sửa lỗi phát sinh do thay đổi cấu trúc. <br>- Chuẩn bị dự án cho các chức năng quản lý sản phẩm, upload S3 và thanh toán. | 29/05/2026 | 29/05/2026 | |
 
 
 ### Kết quả đạt được tuần 6:
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
 
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
-
+* Tối ưu cấu trúc frontend/backend và phân tách trách nhiệm rõ hơn.
+* Sắp xếp lại routes, controllers, services, components và utilities.
+* Cập nhật cấu trúc dữ liệu cho người dùng, sản phẩm, file số, danh mục và giao dịch.
+* Bổ sung một số trường và ràng buộc để hỗ trợ các chức năng marketplace sau này.
+* Kiểm thử cơ bản và sửa lỗi các module hiện có trước khi phát triển tính năng lớn hơn.
