@@ -27,7 +27,10 @@ chapter: false
 
 &emsp; **Internship Duration:** From 17/04/2026 to 10/07/2026
 
-![Your profile picture](images/avatar.jpg) <!-- it's inside static/images/ -->
+<img src="images/avatar.jpg" alt="Profile picture"
+     style="width:400px; height:400px; object-fit:cover;
+            border-radius:50%; border:4px solid #0a3aa0;
+            padding:4px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
 
 ### Report Content
 

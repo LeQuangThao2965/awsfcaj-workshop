@@ -26,7 +26,10 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 17/04/2026 đến ngày 10/07/2026
 
-![Ảnh đại diện của bạn](images/avatar.jpg) <!-- nằm trong static/images/ -->
+<img src="../images/avatar.jpg" alt="Profile picture"
+     style="width:400px; height:400px; object-fit:cover;
+            border-radius:50%; border:4px solid #0a3aa0;
+            padding:4px; box-shadow:0 2px 8px rgba(0,0,0,0.15);">
 
 
 
