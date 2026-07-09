@@ -26,8 +26,8 @@ The workshop focuses on deploying the application stack to a cost-aware cloud en
 #### Content
 
 1. [Workshop overview](5.1-Workshop-overview/)
-2. [Prerequisite](5.2-Prerequiste/)
-3. [Backend deployment with EC2 and RDS](5.3-S3-vpc/)
-4. [Frontend deployment and S3 product storage](5.4-S3-onprem/)
-5. [Payment, admin validation, and system testing](5.5-Policy/)
-6. [Cleanup, cost control, and next steps](5.6-Cleanup/)
+2. [Prerequisite](5.2-prerequisite/)
+3. [Backend deployment with EC2 and RDS](5.3-backend-deploy-ec2-and-rds/)
+4. [Frontend deployment and S3 product storage](5.4-frontend-deploy-and-s3-storage/)
+5. [Payment, admin validation, and system testing](5.5-payment-admin-system-testing/)
+6. [Cleanup, cost control, and next steps](5.6-cleanup-cost-next-steps/)

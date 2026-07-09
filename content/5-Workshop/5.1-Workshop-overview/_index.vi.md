@@ -10,13 +10,15 @@ pre: " <b> 5.1. </b> "
 
 **DaiMarket** là nền tảng marketplace dành cho sản phẩm số như tài liệu PDF/Word và mô hình 3D. Hệ thống cho phép người dùng xem danh sách sản phẩm, xem chi tiết, xem trước mô hình 3D hoặc tài liệu mẫu, mua sản phẩm và truy cập sản phẩm đã mua trong thư viện cá nhân.
 
+<img alt="hosted zone" src="../../../images/5-Workshop/5.1-workshop-overview/project_architecture.png">
+
 #### Kiến trúc đã triển khai
 
 | Tầng | Dịch vụ / công nghệ | Vai trò trong hệ thống |
 | --- | --- | --- |
-| Frontend | Vercel, React + Vite | Phục vụ giao diện web, SPA routing và bản build frontend. |
-| API | Amazon EC2, Node.js, Express, PM2 | Chạy các route backend cho auth, products, admin, orders, webhook và library. |
-| Database | Amazon RDS PostgreSQL | Lưu users, roles, categories, products, orders, order items, payment methods, seller data và trạng thái mua hàng. |
+| Frontend | Vercel / React + Vite | Phục vụ giao diện web, SPA routing và bản build frontend. |
+| API | Amazon EC2 / Node.js, Express, PM2 | Chạy các route backend cho auth, products, admin, orders, webhook và library. |
+| Database | Amazon RDS / PostgreSQL | Lưu users, roles, categories, products, orders, order items, payment methods, seller data và trạng thái mua hàng. |
 | Storage | Amazon S3 | Lưu tài sản sản phẩm như thumbnail, document, file gốc và 3D preview model. |
 | Security | IAM Role | Cho phép EC2 PutObject, GetObject, DeleteObject và ListBucket trong phạm vi prefix S3 đã cấu hình. |
 | Payment | SePay webhook | Nhận thông báo chuyển khoản và cập nhật đơn hàng từ PENDING sang SUCCESS. |

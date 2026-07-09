@@ -46,9 +46,12 @@ In addition, a manual payment process does not suit the marketplace model. The s
 ### 3. Solution Architecture
 The architecture is designed with clearly separated layers: the UI layer, API layer, relational data layer, object storage layer, and the security/permission management layer. In the current deployment, the frontend is hosted on Vercel; the target design can replace or complement it with CloudFront once the AWS account is verified and ready to use a CDN.
 
+<!--
 {{% notice warning %}}
 **Figure 2.1 not available yet** — DaiMarket AWS architecture diagram: shows Vercel or CloudFront for the frontend, EC2 backend, RDS PostgreSQL, S3 product assets, IAM Role, CloudWatch, and the SePay webhook. Purpose: gives the reader a full picture of the system components and the data flows between them.
 {{% /notice %}}
+-->
+![project architecture](../images/5-Workshop/5.1-workshop-overview/project_architecture.png)
 
 Overall system flow: users access the frontend; the frontend calls the API via `/api`; requests are forwarded to the EC2 backend; the backend handles business logic, queries RDS, and uploads or streams files from S3; when a payment occurs, SePay sends a webhook so the backend can confirm and update the order status.
 
@@ -64,6 +67,7 @@ Component | Current implementation | Role in the system
 |Payment | SePay webhook | Receives transaction notifications, reconciles the order code, and updates the order to SUCCESS.|
 |Monitoring | PM2 logs, AWS Budget; CloudWatch as a future extension | Tracks backend errors and costs; can expand to logs/alarms.|
 
+<!--
 {{% notice note %}}
 **Notes on target architecture vs. actual implementation**
 <br>&emsp;- The target diagram includes Route 53, ACM, CloudFront, and WAF. These components suit production, but not all of them are deployed in the current demo.
@@ -71,7 +75,7 @@ Component | Current implementation | Role in the system
 <br>&emsp;- S3 has been repurposed correctly for product asset storage. The bucket should remain private; users must not read objects directly without the backend checking permissions first.
 <br>&emsp;- The backend currently streams files from S3 to the client after verifying ownership. A later phase can switch to presigned URLs to reduce the load on EC2.
 {{% /notice %}}
-
+-->
 
 ### 4. Technical Implementation
 *4.1. Backend and database*
@@ -115,19 +119,20 @@ Milestone | Main work | Result
 ### 6. Budget Estimation
 The infrastructure is designed for a low-cost learning/demo environment. The final numbers will be updated using AWS Billing or the AWS Pricing Calculator at submission time, because pricing depends on the region, instance type, runtime, storage volume, and data transfer.
 
+<!--
 {{% notice warning %}}
 **Figure 2.2 not available yet** — Screenshot of AWS Billing/Budget or the AWS Pricing Calculator showing the estimated monthly cost for EC2, RDS, S3, and data transfer. Purpose: serves as evidence of the actual budget figures instead of theoretical estimates.
 {{% /notice %}}
+-->
 
 Service | Configuration/Usage scope | Status | Estimate/notes to update
 |---|---|---|---|
-|Amazon EC2 | 1 Ubuntu instance running the Node.js backend with PM2 | In use | Fill in the cost based on the actual instance type and 24/7 or hourly runtime.|
-|Amazon RDS PostgreSQL | Single-AZ, db.t4g.micro, 20 GiB gp3 | In use | Previous internal estimate around 13.98 USD/month; must be confirmed in AWS Billing.|
-|Amazon S3 | Bucket `marketplace-frontend-thao`, prefix `products/` for product assets | In use | Low cost at demo scale; calculate by GB stored + requests + data transfer.|
+|Amazon EC2 | 1 Ubuntu instance running the Node.js backend with PM2 | In use | ~7.59$/month |
+|Amazon RDS PostgreSQL | Single-AZ, db.t4g.micro, 20 GiB gp3 | In use | > ~12$/month |
+|Amazon S3 | Bucket `marketplace-frontend-thao`, prefix `products/` for product assets | In use | ~0.18$/month |
 |IAM Role/Policy | `marketplace-ec2-s3-role` | In use | No separate charge.|
-|Vercel | Temporary frontend hosting | In use | Hobby/free within limits; not an AWS cost.|
-|CloudFront/Route 53/WAF | Target design | Not used in the demo | Not included in the actual total cost until enabled; can go in the expansion section.|
-|AWS Budget/CloudWatch | Cost/log monitoring | Partial | AWS Budget has no base charge; update CloudWatch if logs/alarms are enabled.|
+|Vercel | frontend hosting | In use | Free |
+|AWS Budget | Cost/log monitoring | Partial | AWS Budget has no base charge|
 
 
 ### 7. Risk Assessment
@@ -151,7 +156,7 @@ Risk | Impact | Probability | Mitigation strategy
 - The project has a clear architecture diagram covering compute, storage, database, IAM, and payment integration.
 - Forms the basis for expanding to seller approval, soft-delete products, CloudFront/Route 53/ACM, CloudWatch logging, CI/CD, and presigned URLs.
 
-
+<!--
 ### 9. List of figures/evidence to be added
 {{% notice info %}}
 The figures below are **not available yet** and will be inserted into the report once captured/drawn. The table describes exactly what each figure must show.
@@ -166,3 +171,4 @@ Figure | Name/evidence | Content to show
 |Figure 2.5 | API health/products/categories | curl or browser returning a successful response.|
 |Figure 2.6 | Frontend demo | Home/search/product detail/library/admin pages working on Vercel.|
 |Figure 2.7 | SePay webhook/order status | Webhook receiving the request and the order switching to SUCCESS with a valid test transaction.|
+-->

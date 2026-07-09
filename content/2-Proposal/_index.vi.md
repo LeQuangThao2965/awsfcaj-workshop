@@ -46,9 +46,12 @@ Ngoài ra, quy trình thanh toán thủ công không phù hợp với mô hình 
 ### 3. Kiến trúc giải pháp
 Kiến trúc được thiết kế theo hướng tách lớp rõ ràng: lớp giao diện, lớp API, lớp dữ liệu quan hệ, lớp object storage và lớp bảo mật/quản trị quyền. Trong triển khai hiện tại, frontend được host trên Vercel; phương án mục tiêu có thể thay thế hoặc bổ sung CloudFront khi tài khoản AWS được xác minh và sẵn sàng dùng CDN.
 
+<!--
 {{% notice warning %}}
 **Hình 2.1 chưa có** — Sơ đồ kiến trúc hệ thống DaiMarket trên AWS: thể hiện Vercel hoặc CloudFront cho frontend, EC2 backend, RDS PostgreSQL, S3 product assets, IAM Role, CloudWatch và SePay webhook. Tác dụng: cho người đọc thấy toàn cảnh các thành phần hệ thống và luồng dữ liệu giữa chúng.
 {{% /notice %}}
+-->
+![project architecture](../../images/5-Workshop/5.1-workshop-overview/project_architecture.png)
 
 Luồng tổng quát của hệ thống: người dùng truy cập frontend; frontend gọi API qua `/api`; request được chuyển đến backend EC2; backend xử lý nghiệp vụ, truy vấn RDS, upload hoặc stream file từ S3; khi có giao dịch thanh toán, SePay gửi webhook để backend xác nhận và cập nhật trạng thái đơn hàng.
 
@@ -64,6 +67,7 @@ Thành phần | Triển khai hiện tại | Vai trò trong hệ thống
 |Payment | SePay webhook | Nhận thông báo giao dịch, đối chiếu mã đơn và cập nhật order SUCCESS.|
 |Monitoring | PM2 logs, AWS Budget; CloudWatch là hướng mở rộng | Theo dõi lỗi backend, chi phí và có thể mở rộng sang logs/alarms.|
 
+<!--
 {{% notice note %}}
 **Ghi chú về kiến trúc mục tiêu và kiến trúc thực tế**
 <br>&emsp;- Trong sơ đồ mục tiêu có Route 53, ACM, CloudFront và WAF. Các thành phần này phù hợp cho production, nhưng chưa phải toàn bộ đã triển khai trong bản demo hiện tại.
@@ -71,7 +75,7 @@ Thành phần | Triển khai hiện tại | Vai trò trong hệ thống
 <br>&emsp;- S3 đã được chuyển sang đúng mục đích lưu trữ product assets. Bucket vẫn nên private; user không đọc trực tiếp object nếu chưa qua backend kiểm tra quyền.
 <br>&emsp;- Backend hiện stream file từ S3 về client sau khi xác thực quyền sở hữu. Trong giai đoạn sau có thể chuyển sang presigned URL để giảm tải EC2.
 {{% /notice %}}
-
+-->
 
 ### 4. Triển khai kỹ thuật
 *4.1. Backend và database*
@@ -115,19 +119,21 @@ Mốc | Nội dung chính | Kết quả
 ### 6. Ước tính ngân sách
 Dự án được triển khai theo hướng tiết kiệm chi phí để phục vụ mục tiêu học tập và demo thực tập. Số liệu cuối cùng sẽ được cập nhật bằng AWS Billing hoặc AWS Pricing Calculator tại thời điểm nộp báo cáo, vì chi phí phụ thuộc region, instance type, thời gian chạy, dung lượng lưu trữ và data transfer.
 
+<!--
 {{% notice warning %}}
 **Hình 2.2 chưa có** — Ảnh chụp AWS Billing/Budget hoặc AWS Pricing Calculator thể hiện tổng chi phí dự kiến theo tháng cho EC2, RDS, S3 và data transfer. Tác dụng: làm bằng chứng số liệu ngân sách thực tế thay cho ước tính lý thuyết.
 {{% /notice %}}
+-->
+
 
 Dịch vụ | Cấu hình/Phạm vi dùng | Trạng thái | Ước tính/ghi chú cần cập nhật
 |---|---|---|---|
-|Amazon EC2 | 1 instance Ubuntu chạy backend Node.js bằng PM2 | Đang dùng | Cần điền chi phí theo instance type thực tế và thời gian chạy 24/7 hoặc theo giờ.|
-|Amazon RDS PostgreSQL | Single-AZ, db.t4g.micro, 20 GiB gp3 | Đang dùng | Ước tính nội bộ trước đó khoảng 13.98 USD/tháng; cần xác nhận lại trong AWS Billing.|
-|Amazon S3 | Bucket `marketplace-frontend-thao`, prefix `products/` cho product assets | Đang dùng | Chi phí thấp ở quy mô demo; cần tính theo GB lưu trữ + request + data transfer.|
+|Amazon EC2 | 1 instance Ubuntu chạy backend Node.js bằng PM2 | Đang dùng | ~7.59$/tháng |
+|Amazon RDS PostgreSQL | Single-AZ, db.t4g.micro, 20 GiB gp3 | Đang dùng | ~13$/tháng|
+|Amazon S3 | Bucket `marketplace-frontend-thao`, prefix `products/` cho product assets | Đang dùng | ~0.18$/tháng |
 |IAM Role/Policy | `marketplace-ec2-s3-role` | Đang dùng | Không tính phí riêng.|
-|Vercel | Frontend hosting tạm thời | Đang dùng | Hobby/free nếu dùng đúng hạn mức; không phải chi phí AWS.|
-|CloudFront/Route 53/WAF | Thiết kế mục tiêu | Chưa dùng trong demo | Không đưa vào tổng chi phí thực tế nếu chưa bật; có thể đưa vào phần mở rộng.|
-|AWS Budget/CloudWatch | Theo dõi chi phí/logs | Một phần | AWS Budget không tính phí cơ bản; CloudWatch cần cập nhật nếu bật logs/alarms.|
+|Vercel | Frontend hosting | Đang dùng | Free |
+|AWS Budget| Theo dõi chi phí/logs | Một phần | AWS Budget không tính phí cơ bản|
 
 
 ### 7. Đánh giá rủi ro
@@ -151,7 +157,7 @@ Rủi ro | Ảnh hưởng | Xác suất | Chiến lược giảm thiểu
 - Dự án có sơ đồ kiến trúc rõ ràng, thể hiện được compute, storage, database, IAM và payment integration.
 - Hình thành cơ sở để mở rộng sang seller approval, soft delete product, CloudFront/Route 53/ACM, CloudWatch logging, CI/CD và presigned URL.
 
-
+<!--
 ### 9. Danh sách hình ảnh/chứng cứ sẽ bổ sung
 {{% notice info %}}
 Các hình bên dưới **chưa có** và sẽ được chèn vào báo cáo sau khi chụp/vẽ xong. Bảng mô tả rõ từng hình cần thể hiện nội dung gì.
@@ -166,3 +172,4 @@ Mã hình | Tên hình/chứng cứ | Nội dung cần thể hiện
 |Hình 2.5 | API health/products/categories | curl hoặc browser trả response thành công.|
 |Hình 2.6 | Demo frontend | Trang chủ/search/product detail/library/admin hoạt động trên Vercel.|
 |Hình 2.7 | SePay webhook/order status | Webhook nhận request và order chuyển SUCCESS nếu có giao dịch test hợp lệ.|
+-->

@@ -26,8 +26,8 @@ Workshop tập trung vào việc đưa ứng dụng từ môi trường phát tr
 #### Nội dung
 
 1. [Tổng quan Workshop](5.1-Workshop-overview/)
-2. [Điều kiện chuẩn bị](5.2-Prerequiste/)
-3. [Triển khai backend với EC2 và RDS](5.3-S3-vpc/)
-4. [Triển khai frontend và lưu trữ sản phẩm trên S3](5.4-S3-onprem/)
-5. [Thanh toán, kiểm thử admin và kiểm thử hệ thống](5.5-Policy/)
-6. [Dọn dẹp, kiểm soát chi phí và hướng phát triển](5.6-Cleanup/)
+2. [Điều kiện chuẩn bị](5.2-prerequisite/)
+3. [Triển khai backend với EC2 và RDS](5.3-backend-deploy-ec2-and-rds/)
+4. [Triển khai frontend và lưu trữ sản phẩm trên S3](5.4-frontend-deploy-and-s3-storage/)
+5. [Thanh toán, kiểm thử admin và kiểm thử hệ thống](5.5-payment-admin-system-testing/)
+6. [Dọn dẹp, kiểm soát chi phí và hướng phát triển](5.6-cleanup-cost-next-steps/)

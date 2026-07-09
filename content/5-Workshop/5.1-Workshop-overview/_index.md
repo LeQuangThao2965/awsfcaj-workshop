@@ -10,13 +10,15 @@ pre: " <b> 5.1. </b> "
 
 **DaiMarket** is a marketplace platform for digital assets such as PDF/Word documents and 3D models. The system lets users browse products, view product details, preview 3D models or sample documents, purchase products, and access owned items from a personal library.
 
+<img alt="hosted zone" src="../../images/5-Workshop/5.1-workshop-overview/project_architecture.png">
+
 #### Implemented architecture
 
 | Layer | Implemented service / technology | Role in the system |
 | --- | --- | --- |
-| Frontend | Vercel, React + Vite | Serves the web UI, SPA routing, and frontend build. |
-| API | Amazon EC2, Node.js, Express, PM2 | Runs backend routes for auth, products, admin, orders, webhooks, and library. |
-| Database | Amazon RDS PostgreSQL | Stores users, roles, categories, products, orders, order items, payment methods, seller data, and purchase state. |
+| Frontend | Vercel / React + Vite | Serves the web UI, SPA routing, and frontend build. |
+| API | Amazon EC2 / Node.js, Express, PM2 | Runs backend routes for auth, products, admin, orders, webhooks, and library. |
+| Database | Amazon RDS / PostgreSQL | Stores users, roles, categories, products, orders, order items, payment methods, seller data, and purchase state. |
 | Storage | Amazon S3 | Stores product assets such as thumbnails, documents, original files, and 3D preview models. |
 | Security | IAM Role | Allows EC2 to PutObject, GetObject, DeleteObject, and ListBucket only within the configured S3 product prefix. |
 | Payment | SePay webhook | Receives transfer notifications and updates orders from PENDING to SUCCESS. |
