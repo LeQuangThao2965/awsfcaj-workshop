@@ -35,5 +35,3 @@ Typically, and as a standard, a worklog is carried out over about 3 months (thro
 **Week 10:** [Stabilizing core features, full system testing, and deploying DaiMarket to AWS (EC2, RDS, S3, IAM Role)](1.10-week10/)
 
 **Week 11:** [Production-like integration: Vercel frontend, EC2 API, RDS and S3 product storage](1.11-week11/)
-
-**Week 12:** [Doing task N...](1.12-week12/)
