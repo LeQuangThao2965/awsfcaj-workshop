@@ -6,118 +6,76 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+## Monitoring and Managing Claude Code Costs on Amazon Bedrock: A Comprehensive Guide for Developers
+Using AI in programming is an irreversible trend, and Claude Code combined with Amazon Bedrock is one of the most powerful tools available today. However, when deploying this tool for an entire team, managers and system engineers often face a tough question: How do we track usage, control costs, and measure actual code generation performance?
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+Fortunately, AWS provides a built-in monitoring solution through OpenTelemetry (OTEL) and CloudWatch. Let's explore the architecture behind this system to see how you can leverage it.
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+## 1. Two Monitoring Architecture Options: Sidecar vs. Central
 
----
+Depending on your project team size and budget, you can choose to deploy the data collection system (Collector) in one of the following two models:
 
-## Architecture Guidance
+### Sidecar Model (Economical & Lightweight)
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+If you want a monitoring solution with no server maintenance costs (around $0/month for infrastructure), Sidecar is the perfect choice.
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+- How it works: A very lightweight Go application (named otel-helper, only about 15-20MB) runs in the background directly on each developer's machine.
+- Advantages: Each client sends metrics directly to the CloudWatch OTLP endpoint via SigV4 authentication. The system requires absolutely no setup for VPC, Load Balancer, or ECS Fargate.
 
-**The solution architecture is now as follows:**
+### Central Model (Centralized & For Enterprise)
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+If your company needs long-term historical data storage for analytical SQL queries, the Central model is mandatory.
 
----
+- How it works: Data from client machines is sent to a central server (running ECS Fargate) placed behind an Application Load Balancer (ALB).
+- Cost: Slightly higher, around $30–$50/month for AWS resources.
+- Power: Enables deep data analysis workflows with Athena (covered in the next section).
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+![alt text](../../images/3-BlogsPosted/3.1-Blog1/image2.png)
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+## 2. What Is The System Listening To?
 
----
+More than just dry numbers, this system sends back highly practical data reflecting developer behavior and performance:
 
-## Technology Choices and Communication Scope
+- Consumption & Costs: Closely monitors Token volume (input/output/cache) and estimates AWS costs in real-time (metrics token.usage, cost.usage).
+- Programming Performance: Records the number of lines of code added/deleted (lines_of_code.count), the number of commits, and Pull Requests (pull_request.count).
+- AI Usage Behavior: What code editing decisions is the AI tool making? How long is the developer actually "active" working with the AI?
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+All these metrics are tagged in detail by user (user.email), the type of AI model being used, and even the department/team if you use OIDC authentication.
 
----
+![alt text](../../images/3-BlogsPosted/3.1-Blog1/image2.png)
 
-## The Pub/Sub Hub
+## 3. Visual Dashboard With PromQL
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+All collected data will be pushed to CloudWatch Dashboards. Thanks to the power of the PromQL query language, you will instantly get a sleek dashboard with charts:
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+- Overview of active users and Cache hit rate (helping to save API costs).
+- Cost and token distribution charts by user or team.
+- Code generation performance analysis by programming language.
 
----
+![alt text](../../images/3-BlogsPosted/3.1-Blog1/image3.png)
 
-## Core Microservice
+## 4. Budget Management (Quota) - Preventing Accidental "Money Burning"
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+Giving developers a powerful AI tool without budget limits is a major cloud cost risk. This monitoring solution integrates a highly intelligent budget control mechanism:
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+- Every 15 minutes, a background AWS Lambda function runs, queries token metrics from CloudWatch, and updates them into a DynamoDB table.
+- When a developer uses Claude Code, the system quickly checks against the quota limit on DynamoDB to make a swift "Allow" or "Block" decision.
 
----
+## 5. Unlocking Historical Analysis Power With AWS Athena (Optional)
 
-## Front Door Microservice
+PromQL CloudWatch Dashboards are great for real-time monitoring, but they are limited to a 7-day data retention period.
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+If you are a senior manager who wants to create quarterly reports, you can enable the analytics_enabled=true feature (only available on the Central model). At this point, the system will send additional logs in EMF (Embedded Metric Format). This data is aggregated by Kinesis Data Firehose, converted into highly optimized Parquet format, and stored in S3.
 
----
+From here, you can easily use AWS Athena to run SQL queries analyzing the work history of hundreds of developers over several months.
 
-## Staging ER7 Microservice
+## Conclusion
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+Whether you are a small team wanting to use the free Sidecar model for quick metrics, or an enterprise needing the Central model with Kinesis & Athena to manage thousands of developers, this AWS monitoring architecture can meet your needs. By setting up this telemetry system, you not only control infrastructure costs but also measure exactly how much value AI is bringing to your project.
 
----
+### Original reference links:
 
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+- [AWS Solutions Library: Monitoring Claude Code with Amazon Bedrock](https://github.com/aws-solutions-library-samples/guidance-for-claude-code-with-amazon-bedrock/blob/main/assets/docs/MONITORING.md)
+- [AWS Bedrock Generative AI Application Architecture | AWS Builder Center](https://builder.aws.com/content/2f2d59922DQNz3iH1pCTeudpmhv/aws-bedrock-generative-ai-application-architecture)
+- [Managing AWS Distro for OpenTelemetry Collector | AWS Open Source Blog](https://aws.amazon.com/vi/blogs/opensource/managing-aws-distro-for-opentelemetry-collector-with-aws-systems-manager-distributor/)
+- [Getting started with CloudWatch automatic dashboards - Amazon CloudWatch](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/GettingStarted.html)
