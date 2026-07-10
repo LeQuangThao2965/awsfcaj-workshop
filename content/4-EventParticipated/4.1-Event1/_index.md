@@ -76,5 +76,8 @@ The event reminded me that professional development requires not only technical 
 # Event Photos
 
 ![alt text](../../images/4-Event/E1/e1-30-05-2026.png)
+![alt text](../../images/4-Event/E1/e1-p2.jpg)
+![alt text](../../images/4-Event/E1/e1-p3.jpg)
+![alt text](../../images/4-Event/E1/e1.jpg)
 
 > FCAJ Community Day reminded me that knowledge grows faster when it is learned, tested, and shared within an active community.
