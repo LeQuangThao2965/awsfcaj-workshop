@@ -6,10 +6,6 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice note %}}
-**Note:** This worklog might be missing some information all because of my gold fish brain sometime forgot to take note, sorry for the inconvenience.
-{{% /notice %}}
-
 **On this page**, I will introduce my worklog. Like how I completed it, how many weeks did it take me to complete the program, and what I did in all those weeks!
 
 Typically, and as a standard, a worklog is carried out over about 3 months (throughout the internship period) with my weekly contents as follows:

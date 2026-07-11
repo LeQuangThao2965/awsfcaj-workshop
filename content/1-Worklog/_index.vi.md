@@ -6,10 +6,6 @@ chapter: false
 pre: " <b> 1. </b> "
 ---
 
-{{% notice note %}}
-**Note:** Worklog có thể thiếu một số thông tin vì thỉnh thoảng mình quên ghi chú lại, xin lỗi vì sự bất tiện này.
-{{% /notice %}}
-
 **Trong trang này** mình sẽ giới thiệu worklog của mình. Như là: mình đã hoàn thành chương trình trong vòng bao nhiêu tuần hay là mình đã làm gì trong các tuần đó!
 
 
