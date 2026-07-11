@@ -6,7 +6,7 @@ chapter: false
 pre: " <b> 6. </b> "
 ---
 
-During my internship at **Công ty TNHH Amazon Web Services Việt Nam** from **15/04/2026** to **15/07/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
+During my internship at **Amazon Web Services Vietnam Co., Ltd** from **15/04/2026** to **15/07/2026**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
 I participated in **Developing and testing the DaiMarket project**, through which I improved my skills in **Programming, analysis, report writing, improvisation, problem-solving skills**.  
 
 In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
